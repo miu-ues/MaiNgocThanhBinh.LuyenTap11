@@ -1,0 +1,48 @@
+package Bai2;
+
+
+interface MessageService {
+    void sendMessage(String message);
+}
+
+class EmailService implements MessageService {
+    @Override
+    public void sendMessage(String message) {
+        System.out.println("[EMAIL] Nội dung: " + message);
+    }
+}
+
+class SMSService implements MessageService {
+    @Override
+    public void sendMessage(String message) {
+        System.out.println("[SMS] Nội dung: " + message);
+    }
+}
+
+class Notification {
+    private MessageService service;
+
+    public void setService(MessageService service) {
+        this.service = service;
+    }
+
+    public void notifyUser(String message) {
+        if (service == null) {
+            System.out.println("Chưa có service!");
+            return;
+        }
+        service.sendMessage(message);
+    }
+}
+
+public class extwo {
+    public static void main(String[] args) {
+        Notification noti = new Notification();
+
+        noti.setService(new EmailService());
+        noti.notifyUser(" Hello cả nhà ");
+
+        noti.setService(new SMSService());
+        noti.notifyUser(" Tạm biệt cả nhà ");
+    }
+}
