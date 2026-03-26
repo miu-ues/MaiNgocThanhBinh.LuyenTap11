@@ -1,6 +1,5 @@
 package Bai2;
 
-
 interface MessageService {
     void sendMessage(String message);
 }
